@@ -1,3 +1,4 @@
 base/migrations
 db.sqlite3
-studybud/__pycache__/
+__pycache__/
+*.py[cod]
