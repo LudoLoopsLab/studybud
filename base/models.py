@@ -37,6 +37,11 @@ class Message(models.Model):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        # negative = descending ordering
+        # latest updated goes first
+        ordering = ['-updated', '-created']
+
     def __str__(self):
         # trim the content
         return self.body[0:50]
