@@ -57,7 +57,11 @@ def registerPage(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
+            # get the user information from the form without saving it
             user = form.save(commit=False)
+            print(form)
+
+            # change username to lower case
             user.username = user.username.lower()
             user.save()
             login(request, user)
@@ -124,7 +128,14 @@ def createRoom(request):
     if request.method == 'POST':
         form = RoomForm(request.POST)
         if form.is_valid():
-            form.save()
+            # get the user information from the form
+            # form will show html tag
+            # form.save() get only the form data
+            # commit=False meant it doesn't save it
+            room = form.save(commit=False)
+            # add the request user name to the form
+            room.host = request.user
+            room.save()
             return redirect('home')
 
     context = {'form': form}
