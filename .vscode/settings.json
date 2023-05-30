@@ -17,5 +17,8 @@
   },
   "prettier.disableLanguages": [
     "html"
+  ],
+  "cSpell.words": [
+    "corsheaders"
   ]
 }
