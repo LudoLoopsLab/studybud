@@ -1,0 +1,1 @@
+from studybud import application
