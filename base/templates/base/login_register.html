@@ -1,4 +1,4 @@
-{% extends "main.html" %}
+{% extends 'main.html' %}
 {% block content %}
   <main class="auth layout">
     {% if page == 'login' %}
@@ -14,15 +14,18 @@
             <form class="form" action="" method="POST">
               {% csrf_token %}
               <div class="form__group form__group">
-                <label for="room_name">Username</label>
-                <input id="username" name="username" type="text" placeholder="Username" />
+                <label for="room_name">Email</label>
+                <input id="username"
+                       name="email"
+                       type="email"
+                       placeholder="e.g. dennis_ivy@email.com" />
               </div>
               <div class=" form__group">
                 <label for="password">Password</label>
                 <input id="password"
                        name="password"
                        type="password"
-                       placeholder="&bull; &bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
+                       placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
               </div>
               <button class="btn btn--main" type="submit">
                 <svg version="1.1"
@@ -56,11 +59,14 @@
           </div>
           <div class="layout__body">
             <h2 class="auth__tagline">Find your study partner</h2>
-            <form class="form" action="#" method="post">
+            <form class="form" action="" method="POST">
               {% csrf_token %}
               {% for field in form %}
                 <div class="form__group form__group">
-                  <label for="room_name">{{ field.label }}</label>
+                  <label for="room_name">
+                    {{ field.label }}
+                    {% if field.label == "Password" %}( must contain at least 1 digit, 0-9.){% endif %}
+                  </label>
                   {{ field }}
                 </div>
               {% endfor %}
@@ -81,7 +87,7 @@
             </form>
             <div class="auth__action">
               <p>Already signed up yet?</p>
-              <a href="{% url 'login' %}" class="btn btn--link">Log in</a>
+              <a href="{% url 'login' %}" class="btn btn--link">Sign Up</a>
             </div>
           </div>
         </div>
